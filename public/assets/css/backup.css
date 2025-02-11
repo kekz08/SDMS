@@ -1,0 +1,635 @@
+html, body {
+    font-family: Arial, sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative; /* Ensure the body is positioned for overlay */
+    background: linear-gradient(to bottom, #27867E, #09201E); /* The gradient as the base layer */
+    color: #fff;
+    z-index: 1; /* Ensures content stays on top */
+    overflow-x: hidden;
+}
+
+/* Responsive media queries */
+@media (max-width: 768px) {
+    nav ul li {
+        display: block; /* Stack menu items on smaller screens */
+        margin: 10px 0;
+    }
+
+    .container {
+        padding: 20px; /* Reduce padding */
+    }
+
+    .scholarship-card {
+        width: 100%; /* Full width for smaller screens */
+        height: auto;
+    }
+
+    .footer-card {
+        width: 100%; /* Footer cards stack vertically */
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-container img {
+        height: 40px; /* Smaller logo on small screens */
+    }
+
+    .site-title {
+        font-size: 18px; /* Smaller title */
+    }
+
+    .login-btn {
+        padding: 5px 10px; /* Smaller login button */
+    }
+
+    .scholarship-card h3 {
+        font-size: 18px; /* Adjust scholarship title */
+    }
+
+    .scholarship-card p {
+        font-size: 12px; /* Adjust description font */
+    }
+
+    .footer-card p {
+        font-size: 14px; /* Adjust footer text */
+    }
+}
+
+/* Background image with 10% opacity, placed above the gradient */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../images/sdms-logo.png') no-repeat right;
+    background-size: 75%; /* Adjust size as needed */
+    opacity: 0.05; /* 10% opacity */
+    z-index: 0; /* Below all content but on top of the gradient */
+    pointer-events: none; /* Prevents any interaction with the pseudo-element */
+}
+
+
+header {
+    background-color: #fff;
+    padding: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed; /* Make header fixed */
+    top: 0; /* Stick to the top */
+    width: 100%; /* Full width */
+    z-index: 1000; /* Ensure it stays above other content */
+}
+
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.logo-container img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.site-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+}
+
+nav {
+    margin-right: 50px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #79b83d;
+}
+
+nav ul li a.active {
+    color: #79b83d; /* Light green for the active page */
+    font-weight: bold; /* Optional: make it bold */
+}
+
+.login-btn {
+    background-color: #79b83d;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.login-btn:hover {
+    background-color: #417406;
+    color: #fff;
+}
+
+.container {
+    text-align: center;
+    padding: 80px;
+    min-height: calc(100vh - 140px);
+    padding-bottom: 20px;
+}
+.container h1 {
+    font-size: 46px;
+    margin-bottom: 40px;
+}
+.scholarships {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.scholarship-card {
+    background-color: #27867E;
+    width: 600px;
+    height: 250px;
+    padding: 20px;
+    margin: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    text-align: left;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    z-index: 1;
+}
+.scholarship-card:hover {
+    background-color: #2d9e95;
+}
+.scholarship-card h3 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+.scholarship-card p {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+.learn-more-btn {
+    background-color: #00CBAD;
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+}
+footer {
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+.foot-container {
+    text-align: center;
+    padding: 80px;
+    padding-bottom: 20px;
+    min-height: auto; /* Content will define the height */
+    background-color: transparent !important; /* Ensures transparency */
+    z-index: 1; /* Makes sure it stays above other elements if necessary */
+    position: relative; /* Ensures it can be layered correctly if needed */
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff; /* Footer background color */
+    z-index: 1000;
+}
+.footer-card-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background-color: transparent !important; /* Ensures transparency */
+    z-index: 1; /* Makes sure it stays above other elements if necessary */
+    position: relative; /* Ensures it can be layered correctly if needed */
+}
+
+.footer-card {
+    background-color: #27867E;
+    width: 300px;
+    padding: 20px;
+    margin: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.footer-card i {
+    font-size: 30px; /* Icon size */
+    margin-bottom: 10px;
+}
+
+.footer-card p {
+    margin: 5px 0;
+    font-size: 18px; /* Adjust font size for consistency */
+}
+
+.footer-card:hover {
+    background-color: #2d9e95;
+}
+.footer-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.footer-card p {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.footer-copy {
+    margin: 0;
+    color: rgb(7, 7, 7);
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px; /* Space between social icons */
+    justify-content: center; /* Center the social icons */
+    flex-wrap: wrap; /* Allow wrapping */
+}
+
+.footer-social-icon {
+    font-size: 24px; /* Adjust icon size */
+    color: rgb(8, 8, 8); /* Icon color */
+}
+
+.bottom-footer-social {
+    color: rgb(8, 8, 8); /* Link color */
+    text-decoration: none; /* Remove underline */
+}
+
+.phone-icon {
+    color: #79b83d; /* Color for the phone icon */
+}
+
+.email-icon {
+    color: #ff9800; /* Color for the email icon */
+}
+
+.location-icon {
+    color: #f44336; /* Color for the location icon */
+}
+
+.hero-section {
+    position: relative;
+    padding: 40px;
+    color: white;
+    height: 500px; /* Adjust height as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-image {
+    position: absolute;
+    left: -200px; /* Align image to the left */
+    bottom: -300px; /* Align image to the bottom */
+    z-index: 1; /* Image behind the text */
+}
+
+.piggy-bank-image {
+    width: 2000px; /* Increase size for a bigger image */
+    height: auto;
+    opacity: 0.8; /* Adjust opacity if needed */
+}
+
+.hero-content {
+    top: 150px;
+    left: 500px;
+    z-index: 2; /* Text on top of the image */
+    position: relative;
+    max-width: 60%;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left; /* Align text to the left */
+}
+
+.hero-content h3, .hero-content h1, .hero-content p {
+    margin: 0 auto; /* Center the text block */
+}
+
+.hero-content h3 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 40px;
+}
+
+.hero-content h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 90px;
+}
+
+.hero-content p {
+    font-family: 'Fraunces', cursive;
+    font-size: 24px;
+    margin: 20px 0;
+}
+
+.hero-buttons {
+    margin-top: 20px;
+}
+
+.apply-btn, .inquire-btn {
+    display: inline-flex;          /* Use Flexbox */
+    justify-content: center;       /* Center horizontally */
+    align-items: center;           /* Center vertically */
+    width: 200px;                  /* Fixed width */
+    height: 80px;                  /* Fixed height */
+    padding: 0;                    /* No padding needed */
+    margin-right: 20px;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;            /* Ensure text is centered */
+    font-size: 20px;               /* Make text size bigger */
+}
+
+.apply-btn {
+    background-color: #ff9900;
+}
+
+.inquire-btn {
+    background-color: #00bfff;
+}
+
+/* General styling for the testimonial section */
+.testimonial-content h2 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/* Card for client testimonial */
+.testimonial-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.client-image img {
+    width: 650px;
+    height: 650px;
+    border-radius: 10px;
+    margin-right: 50px;
+    border: 5px solid transparent; /* Create space for the wavy border */
+    background-image: linear-gradient(white, white), 
+                      linear-gradient(to right, rgb(199, 247, 199), rgb(57, 223, 6)); /* Two layers: inner white and outer pink-red */
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.testimonial-text {
+    font-family: 'Fredoka One', cursive;
+    text-align: left;
+}
+.testimonial-text h3 {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.testimonial-text p {
+    font-size: 36px;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.client-name {
+    font-size: 23px;
+    font-weight: bold;
+}
+
+/* Media Queries for smaller screens */
+@media (max-width: 768px) {
+    .client-image img {
+        margin-right: 0;
+        margin-bottom: 20px; /* Adds spacing when stacked vertically */
+    }
+    .testimonial-card {
+        flex-direction: column; /* Stacks image and text on smaller screens */
+        text-align: center; /* Centers text on small screens */
+    }
+    .testimonial-text h3, .testimonial-text p, .client-name {
+        font-size: 5vw; /* Adjusts font size further for smaller screens */
+    }
+}
+
+/* General Styles for the Section */
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.about-description {
+    font-size: 58px;
+    max-width: auto;
+    margin: 150px auto;
+    text-align: left;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .about-description {
+        font-size: 1.1rem;
+    }
+}
+
+.signup-wrapper {
+    box-shadow: 0 5px 29px rgba(0, 0, 0, 0.1);
+  }
+  
+  .signup-wrapper-header {
+    padding: 10px;
+    background: linear-gradient(145deg, #8ecf35, #23cc88);
+    color: #fff;
+  }
+  
+  .signup-wrapper-body {
+    background-color: #fff;
+    padding: 40px;
+    padding-bottom: 50px;
+  }
+  
+  .sign-buttons .def-btn {
+    padding: 0 60px;
+}
+
+.def-btn {
+    height: 60px;
+    line-height: 60px;
+    background: linear-gradient(145deg, #8ecf35, #23cc88);
+    box-shadow: 0px 5px 10px 0px rgba(35, 204, 136, 0.5);
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 0 35px;
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+    text-align: center;
+    display: inline-block;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 30px;
+}
+
+.def-btn a {
+    color: #fff;
+    display: inline-block;
+    text-decoration: none;
+  }
+
+.sign-buttons .def-btn:hover {
+    background-color: #1da66b; /* Darker green on hover */
+}
+
+  .signup-body-subtitle {
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+  
+  .signup-body-title {
+    font-size: 36px;
+    color: #00394f;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  
+  .signtext a {
+    color: #23cc88;
+    display: inline-block;
+    text-decoration: none;
+  }
+  .signtext a:hover {
+    color: #00394f;
+  }
+  
+  .sign-single-input label {
+    font-size: 18px;
+    color: #00394f;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+  
+  .signup-title {
+    padding: 10px 0px 0px;
+    font-size: 22px;
+    text-transform: uppercase;
+  }
+  
+  .sign-input {
+    position: relative;
+    z-index: 1;
+  }
+  .sign-input input {
+    width: 100%;
+    height: 60px;
+    border: 1px solid #e9e9e9;
+    padding: 0 55px;
+    padding-right: 25px;
+  }
+  .sign-input input:focus {
+    border-color: #23cc88;
+  }
+  .sign-input i {
+    position: absolute;
+    left: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #23cc88;
+  }
+  
+  .gbutton {
+    border: 1px solid #080808;
+    height: 60px;
+    line-height: 60px;
+    color: #23cc88;
+    transition: all 0.3s;
+    height: 60px;
+    display: inline-block;
+    padding: 0 25px;
+    position: relative;
+    z-index: 1;
+    min-width: 290px;
+    text-align: start;
+    text-transform: uppercase;
+    background-color: #fff;
+    text-decoration: none;
+  }
+
+  .gbutton i {
+    font-size: 30px;
+    display: inline-block;
+    transform: translateY(3px);
+    margin-right: 35px;
+    color: #fff;
+  }
+  .gbutton:hover {
+    color: #fff;
+  }
+
+  .gbutton:hover:before {
+    width: 100%;
+    border-radius: 0;
+  }
+  .gbutton:before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 75px;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(145deg, #8ecf35, #23cc88);
+    content: "";
+    border-radius: 0 30px 30px 0;
+    transition: all 0.3s;
+  }
+  
+  .sign-buttons .def-btn {
+    padding: 0 60px;
+  }
+
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height of the viewport */
+}
+.row {
+    --bs-gutter-x: 30px;
+}
